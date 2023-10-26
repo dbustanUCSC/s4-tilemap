@@ -47,13 +47,13 @@ let tilemap: HTMLImageElement[][] = new Array(numTiles);
 for(let i = 0; i < numTiles; i++) {
     let row = new Array(numTiles);
     for (let j = 0; j < numTiles; j++) {
-        row[j] = ImgArray[0].src;
+        row[j] = ImgArray[0];
     }
     tilemap[i] = row;
 }
 
 //track the selected tile
-let currentTile = "/tile1.png";
+let currentTile = ImgArray[0];
 
 //draw the initial canvases
 redrawTilemap();
@@ -86,7 +86,10 @@ gridCanvas.addEventListener("click", (e) => {
     const coordX = Math.trunc(e.offsetX / tileSize);
     const coordY = Math.trunc(e.offsetY / tileSize);
 
-    tilemap[coordX][coordY].src = currentTile;
+    //something here
+    //tilemap[coordX][coordY].src = currentTile;
+
+    tilemap[coordX][coordY] = currentTile;
     redrawTilemap();
 })
 
@@ -105,5 +108,5 @@ function drawSelectCanvas()
 
 selectCanvas.addEventListener("click", (e) => {
     const coordY = Math.trunc(e.offsetY / selectHeight);
-    currentTile = imageUrls[coordY];
+    currentTile = ImgArray[coordY];
 })
