@@ -20,8 +20,16 @@ const imageUrls = [
     "/tile7.png",
     "/tile8.png"
 ];
+let ImgArray:  HTMLImageElement [] = [];
+function createImageFromTiles (){
+    imageUrls.forEach(element => {
+    let tileImage = new Image();
+    tileImage.src = element;
+    ImgArray.push(tileImage);
+    });
+}
 
-
+createImageFromTiles();
 //defining the size of the main grid
 const numTiles = 32;
 const tileSize = gridCanvas.width / numTiles;
@@ -39,8 +47,7 @@ let tilemap: HTMLImageElement[][] = new Array(numTiles);
 for(let i = 0; i < numTiles; i++) {
     let row = new Array(numTiles);
     for (let j = 0; j < numTiles; j++) {
-        row[j] = new Image();
-        row[j].src = "/tile1.png";
+        row[j] = ImgArray[0].src;
     }
     tilemap[i] = row;
 }
